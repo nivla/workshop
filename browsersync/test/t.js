@@ -1,2 +1,5 @@
+var browserSync = require('../browser-sync');
 
-console.log(process.cwd(), __dirname);
+browserSync.init({
+
+});

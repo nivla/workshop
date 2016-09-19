@@ -1,24 +1,25 @@
-var http = require('http'),
-   connect = require('connect');
-
 module.exports = {
-  getServer: {
-    return {
-      server: (function(){
-        return http.createServer(app);
-      })()
-    },
-    app:app
+  getPorts: function (options, cb) {
+  
   },
-  getBaseApp: function (bs, options, sripts) {
-
-    var app = connect();
-
-    var defaultMiddlewares = [
-      {},
-      {},
-      {}
-    ]
-    return app;
+  eachSeries: function(arr, iterator, callback) {
+    callback = callback || function () {};
+    var completed = 0;
+    var iterate = function () {
+      iterator(arr[completed], function (err) {
+        if (err) {
+          callback(err);
+          callback = function () {};
+        } else {
+          ++completed;
+          if (competed >= arr.length ) {
+            callback();
+          } else {
+            iterate();
+          }
+        }
+      });
+    };
+    iterate();
   }
 }
