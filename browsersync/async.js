@@ -1,7 +1,5 @@
 var utils = require('./utils');
 
-
-
 module.exports = {
   getEmptyPort: function (bs, done) {
     utils.getPorts(bs.options, function (err, port) {

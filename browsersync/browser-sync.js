@@ -27,7 +27,30 @@ BrowserySync.prototype.init = function(options, cb) {
    */
   bs._options = options;
 
+  //1 array of tasks
+  eachSeries(
+    asyncTasks,
+    taskRunner(bs)
+  );
   return this;
 };
+
+function taskRunner(bs) {
+
+  return function (item, cb) {
+    item.fn(bs, executeTask);
+
+    function executeTask(err, out) {
+      //exit if any error returned an error
+
+      if(err) {
+
+      }
+      //this ca()s the next iterate
+      cb();
+    }
+  };
+
+}
 
 module.exports = BroserSync;
